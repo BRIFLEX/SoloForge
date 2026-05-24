@@ -1,0 +1,50 @@
+/* Motion — images always visible; enhancements when JS loads */
+
+[data-aos] { pointer-events: auto; }
+
+.sf-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sf-fade-up.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-sf-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sf-gold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: sf-shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes sf-shimmer {
+  0% { left: -100%; }
+  50%, 100% { left: 150%; }
+}
+
+.hero-enterprise .hero-bg-img {
+  animation: sf-kenburns 22s ease-in-out infinite alternate;
+}
+
+@keyframes sf-kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-fade-up { opacity: 1; transform: none; transition: none; }
+  .btn-sf-gold::after, .hero-enterprise .hero-bg-img { animation: none; }
+  .trust-track { animation: none; }
+}
